@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>101QA Archives</title>
+  <meta name="description"
+    content="A retro streaming style public history exhibit about queer California archival materials." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="noise"></div>
+
+
+  <div class="desktop-shell">
+    <aside class="dock" aria-label="Desktop folders">
+      <button class="dock-icon active" data-panel="home"><span>▣</span><small>ARCHIVED</small></button>
+      <button class="dock-icon" data-panel="collections"><span>📂</span><small>Collections</small></button>
+      <button class="dock-icon" data-panel="sources"><span>◎</span><small>Sources</small></button>
+
+
+    </aside>
+
+    <main class="screen">
+      <div id="terminalLoader" aria-hidden="true">
+        <div class="loader-box">
+          <div class="loader-header">
+            <span>TEMPORAL TELEPORTATION PROTOCOL</span>
+            <span>SYS.LOAD.1997</span>
+          </div>
+          <div class="teleport-timeline" id="teleportTimeline">
+            <span class="timeline-year" id="year-1997">1997</span>
+            <span class="timeline-arrow" id="arrow-1">➔</span>
+            <span class="timeline-year" id="year-1990">1990</span>
+            <span class="timeline-arrow" id="arrow-2">➔</span>
+            <span class="timeline-year" id="year-1980">1980</span>
+            <span class="timeline-arrow" id="arrow-3">➔</span>
+            <span class="timeline-year" id="year-1970">1970s</span>
+          </div>
+          <div class="loader-status" id="loaderLines"></div>
+        </div>
+      </div>
+
+      <div class="menu-bar">
+        <div>File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Collections&nbsp;&nbsp;Help</div>
+        <div id="clock">Thu May 28, 1997&nbsp;&nbsp;9<span class="clock-blink">:</span>34 PM</div>
+      </div>
+
+      <section id="panel-home" class="panel active-panel">
+        <header class="hero">
+          <div class="hero-bg"></div>
+          <nav class="stream-nav">
+            <div class="brand"><span class="triangle">△</span> ARCHIVED</div>
+            <div class="nav-links">
+              <span data-panel="home" style="cursor:pointer;">Home</span>
+              <span data-panel="home" style="cursor:pointer;">Explore</span>
+              <span data-panel="collections" style="cursor:pointer;">Collections</span>
+            </div>
+          </nav>
+          <div class="hero-copy">
+            <p class="eyebrow">UCSB, Santa Barbara, and California</p>
+            <h1>101QA Archives</h1>
+            <div class="hero-buttons">
+              <button class="primary" id="playFeatured">▶ Play featured</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="sticky-row">
+          <button class="sticky-note" data-panel="sources">Browse Source Archives</button>
+
+          <button class="sticky-note" id="stickyPlay">Play Featured Episode</button>
+        </div>
+
+        <section class="rows" id="episodeRows"></section>
+      </section>
+
+      <!-- NEW COLLECTIONS PANEL -->
+      <section id="panel-collections" class="panel">
+        <div class="window-card">
+          <div class="window-title">Archival Collections Used</div>
+          <h2>UCSB Special Collections Reference Gallery</h2>
+          <p>Primary source documents are preserved and accessible through the Department of Special Collections
+            at the University of California, Santa Barbara (UCSB) Library.</p>
+
+          <div class="museum-collections-grid">
+            <!-- PPF Records -->
+            <div class="museum-collection-card">
+              <span class="catalog-badge">SBHC Mss 113</span>
+              <h3>Pacific Pride Foundation Records</h3>
+              <p class="collection-meta">Location: Box 12 | Series 3: Albums and Photographs</p>
+              <p>The Pacific Pride Foundation (originally the Western Addiction Services Program, later the Gay &
+                Lesbian Resource Center) has served the Santa Barbara and Central Coast communities since the mid-1970s.
+                This collection contains photographs, scrapbooks, local directories, newsletters, and mutual aid records
+                documenting local community organization and critical care networks during the HIV/AIDS crisis.</p>
+            </div>
+
+            <!-- Lois Capps papers -->
+            <div class="museum-collection-card">
+              <span class="catalog-badge">Mss 333</span>
+              <h3>Lois Capps papers</h3>
+              <p class="collection-meta">Location: Box 15</p>
+              <p>Lois Capps served in the U.S. House of Representatives from 1998 to 2017, representing California's
+                Central Coast. Her papers document federal legislative debates, public correspondence, military advocacy
+                (e.g. 'Don't Ask, Don't Tell' reports), local UCSB student organization records, and same-sex marriage
+                debates in California.</p>
+            </div>
+
+            <!-- Bill Berkowitz Collection -->
+            <div class="museum-collection-card">
+              <span class="catalog-badge">ARC Mss 95</span>
+              <h3>Bill Berkowitz DataCenter Collection</h3>
+              <p class="collection-meta">Location: Box 4 | Bill Berkowitz DataCenter and right-wing movements collection
+              </p>
+              <p>Bill Berkowitz is an investigative journalist who researched conservative political groups. This
+                collection contains extensive media clippings, television advertising analyses, flyers, and publications
+                tracking anti-gay campaigns, moral panic campaigns, conversion therapy ads, and media controversies
+                surrounding gay rights during the late 20th century.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="panel-sources" class="panel">
+        <div class="window-card">
+          <div class="window-title">Source files and disclosure</div>
+          <h2>Source list</h2>
+          <div id="sourceList" class="source-list"></div>
+        </div>
+      </section>
+
+
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <article class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="closeModal" aria-label="Close episode">×</button>
+      <div class="modal-grid">
+        <!-- Normal image view -->
+        <img id="modalImage" alt="Selected archive source" />
+        
+
+
+        <div class="modal-copy">
+          <p class="episode-meta" id="modalMeta"></p>
+          <h2 id="modalTitle"></h2>
+          <p id="modalDescription"></p>
+          <h3>Why this matters</h3>
+          <p id="modalWhy"></p>
+          <div class="modal-archival-hud">
+            <h4>Archival Catalog Card</h4>
+            <div class="hud-grid">
+              <div><strong>Call Number:</strong> <span id="modalCatalogId"></span></div>
+              <div><strong>Location:</strong> <span id="modalBox"></span></div>
+              <div><strong>Collection Name:</strong> <span id="modalCollection"></span></div>
+              <div><strong>Approx. Period:</strong> <span id="modalPeriod"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
